@@ -1,0 +1,24 @@
+[package]
+name = "rust-plugin-1"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[lib]
+# The `lib` artifact is needed for the standalone target
+# The `cdylib` crate type is needed for the plugin targets
+# The `staticlib` crate type is needed for the VST3 target
+crate-type = ["cdylib", "lib", "staticlib"]
+
+[dependencies]
+clap-sys = { git = "https://github.com/micahrj/clap-sys.git", rev = "25d7f53fdb6363ad63fbd80049cb7a42a97ac156" }
+# Remove the `assert_process_allocs` feature to allow allocations on the audio
+# thread in debug builds.
+# Not using default-features, to disable the on-by-default VST3 feature to remove the GPL compatibility requirement
+nih_plug = { git = "https://github.com/robbert-vdh/nih-plug.git", default-features = false, features = [
+    "assert_process_allocs",
+    "standalone",
+] }
+nih_plug_iced = { git = "https://github.com/robbert-vdh/nih-plug.git" }
+parking_lot = "0.12.3"

@@ -1,0 +1,2 @@
+[alias]
+nih-xtask = "run --package nih-xtask --release --"
