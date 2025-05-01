@@ -10,3 +10,4 @@ cmake -B clap-wrapper-cmake/build clap-wrapper-cmake -G Xcode && cmake --build c
 
 The resulting plugins will be located in the `clap-wrapper-cmake/build/rust-plugin-1_assets` directory.
 
+**Note: This currently only builds on MacOS, since I haven't tested it on Windows or Linux. The list of frameworks in `CMakeLists.txt` needed by the Rust staticlib at the link stage will need adjusting.**
